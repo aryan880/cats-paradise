@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, useImperativeHandle } from 'react'
 import './App.css'
  
 function hyphenSplitter(data) {
@@ -71,41 +71,61 @@ const Heading = function ({data}){
 
 const entries = Object.entries(eachObject);
   return (
+   <Button entry = {entries}/>
+  )
+}
+
+const Button = function (props){
+  return(
     <div>
-      {entries.map((element) => {
+      {props.entry.map((element) => {
       return(
-        <button id = {element[0]}> {element[0]}({element[1]}) </button>
+        <button id = {element[0]} onClick = {(e) => (e.target.id)}> {element[0]}({element[1]}) </button>
       )
       })}
       <button>All</button>
     </div>
-  )
-}
-
-const Cats = function ({cats}){
-  return (
-    <div>
-      {cats.map((d) => {
-        return (
-          <>
-            <img src = {d.image.url} alt = "cat" />
-            <h1>{d.name}</h1>
-            <h1>{d.origin}</h1>
-            <p>{d.temperament}</p>
-            <p>{d.life_span} years</p>
-            <p>{d.weight.metric} Kg</p>
-            <p>Description</p>
-            <p>{d.description}</p>
-          </>
-        );
-      })}
-    </div>
   );
 }
 
-class App extends Component {
+class Cats extends Component {
+   
   state = {
-    data:[]
+    data:[],
+  }
+
+  componentDidMount() {
+    this.asyncCall();
+  }
+
+  asyncCall = async function() {
+    const response = await fetch(`https://api.thecatapi.com/v1/images/search?breed_id=${this.props.data.id}`);
+    const data = await response.json();
+
+    this.setState({
+      data:data,
+    })
+  }
+  render() {
+    return (
+      <div>
+          {this.state.data.length !==0 ? 
+          <img className = "catsImage" src = {this.state.data[0].url} alt = {this.props.data.name} /> : ""}
+          <h1>{this.props.data.name}</h1>
+          <h1>{this.props.data.origin}</h1>
+          <p>{this.props.data.temperament}</p>
+          <p>{this.props.data.life_span} years</p>
+          <p>{this.props.data.weight.metric} Kg</p>
+          <p>Description</p>
+          <p>{this.props.data.description}</p>
+      </div>
+    )
+  }
+}
+
+class App extends Component {  
+  state = {
+    data:[],
   }
   componentDidMount() {
     this.asyncCall();
@@ -113,11 +133,13 @@ class App extends Component {
   asyncCall = async function() {
     const response = await fetch("https://api.thecatapi.com/v1/breeds");
     const data = await response.json();
+
     this.setState({
-      data:data
+      data:data,
     })
   }
   render() {
+    console.log(this.state.url)
     return (
       <div className = "App">
         <div className = "cat-header">
@@ -133,7 +155,7 @@ class App extends Component {
           <h4>There are {this.state.data.length} are cats breeds</h4>
           {this.state.data.length !== 0 ? <Average data = {this.state.data} /> : ""}
           {this.state.data.length !== 0 ? <Heading data = {this.state.data} /> : ""}
-          {this.state.data.length !== 0 ? <Cats cats = {this.state.data} /> : ""}
+          {this.state.data.length !== 0 ? this.state.data.map((d) => <Cats data = {d} />) : ""}
         </div>
         <div className = "footer">
           <p>Copyright 2020 30 Days Of React</p>
