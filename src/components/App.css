@@ -1,4 +1,153 @@
-.catsImage{
-  height: 800px;
-  width:1000px;
+body{
+  margin: 0;
+}
+/* width */
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 10px rgb(41, 39, 139);
+  border-radius: 10px;
+  background: linear-gradient(90deg,#8e54e9,#4776e6);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: cyan;
+  border-radius: 10px;
+}
+
+.cat-header{
+  background:linear-gradient(90deg,#8e54e9,#4776e6);
+  text-align: center;
+}
+
+h1{
+  margin: 0;
+}
+
+h3{
+  margin-bottom: 0;
+  font-size: 35px;
+  text-shadow: 2px 2px #FFFF;
+}
+h4{
+  margin-top: 2px;
+  font-weight: 300;
+  font-size: 30px;
+  
+}
+
+a{
+  text-decoration: none;
+}
+
+span{
+  color: #61dbfb;
+  font-size: 30px;
+}
+
+ul li{
+  list-style-type: none;
+  display: inline-block;
+}
+
+li a {
+  color: white;
+  margin: 20px;
+  font-size: 10px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+}
+
+a.day{ 
+  font-weight: 600;
+  font-size: 30px;
+  color: purple;
+  cursor: pointer;
+}
+
+.title{
+  margin-bottom: 20px;
+  color: #61dbfb;
+  text-shadow: 1px 1px #1d1b1b;
+  text-align: center;
+  font-family: 'Roboto Slab', serif;
+  padding-top: 50px;
+  font-size: 40px;
+}
+.avgP{
+  margin-top: 0;
+  font-size: 20px;
+  font-weight: 100;
+  font-family: 'Roboto Slab', serif;
+  padding-bottom: 25px;
+}
+
+.cat-cards{
+  width: 65%;
+  display: inline-block;
+  box-shadow: 0 3px 3px 2px rgba(0,0,0,.2);
+  margin: 50px 320px;
+}
+
+.cat-image{
+  max-width: 100%;
+  min-width: 100%;
+}
+
+.cat-body{
+  font-size: 20px;
+  padding: 20px;
+}
+
+.cat-title{
+  font-weight: 300;
+}
+.button-div{
+  margin:30px 320px;
+}
+.btn{
+  font-size: 20px;
+  background-color: white;
+  border: 1px solid rgb(97, 95, 93);
+  margin: 10px;
+  padding: 15px 30px;
+  cursor: pointer;
+}
+
+.footer p {
+  margin-bottom: 0;
+  font-size: 17px;
+}
+
+.footer{
+  width: 100%;
+  position: absolute;
+  padding-top: 50px;
+  padding-bottom: 100px;
+  text-align: center;
+  background-color: #D6D0F5;
+}
+
+.scroll {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.fa{
+  font-size: 60px;
+}
+.loader{
+  text-align: center;
+}
+
+.h{
+  margin: 0;
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
 }
